@@ -10,10 +10,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@planetscale/database": "^1.11.0",
     "@types/node": "20.4.9",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
+    "drizzle-orm": "^0.29.1",
     "eslint": "^8.46.0",
     "eslint-config-next": "13.4.13",
     "next": "13.4.13",
@@ -29,6 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",
     "babel-jest": "^29.6.2",
+    "drizzle-kit": "^0.20.6",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-standard-with-typescript": "^35.0.0",
     "eslint-plugin-import": "^2.27.5",
