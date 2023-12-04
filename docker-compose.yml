@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  snk-ecommerce-db:
+    image: mysql:8.0
+    container_name: snk-ecommerce-dev
+    ports:
+      - "3377:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    volumes:
+      - ./local-db/init.sql:/docker-entrypoint-initdb.d/init.sql
