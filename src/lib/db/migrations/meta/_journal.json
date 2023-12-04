@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1701682944625,
+      "tag": "0000_big_molten_man",
+      "breakpoints": true
+    }
+  ]
+}
