@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate:generate": "yarn drizzle-kit generate:mysql",
+    "migrate:push": "yarn drizzle-kit push:mysql"
   },
   "dependencies": {
     "@planetscale/database": "^1.11.0",
