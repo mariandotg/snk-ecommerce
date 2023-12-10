@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "a1677f76-2d0a-4452-a64c-fec123f090ae",
+  "id": "1fc27e3e-1a69-4994-8311-3a4e4f34f6f4",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "snk_ecommerce_shoeImages": {
@@ -9,7 +9,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "bigint unsigned",
+          "type": "serial",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": true
@@ -47,21 +47,7 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "snk_ecommerce_shoeImages_shoe_id_snk_ecommerce_shoes_id_fk": {
-          "name": "snk_ecommerce_shoeImages_shoe_id_snk_ecommerce_shoes_id_fk",
-          "tableFrom": "snk_ecommerce_shoeImages",
-          "tableTo": "snk_ecommerce_shoes",
-          "columnsFrom": [
-            "shoe_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {
         "snk_ecommerce_shoeImages_id": {
           "name": "snk_ecommerce_shoeImages_id",
@@ -77,7 +63,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "int",
+          "type": "serial",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": true
@@ -123,21 +109,7 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "snk_ecommerce_shoeStock_shoe_id_snk_ecommerce_shoes_id_fk": {
-          "name": "snk_ecommerce_shoeStock_shoe_id_snk_ecommerce_shoes_id_fk",
-          "tableFrom": "snk_ecommerce_shoeStock",
-          "tableTo": "snk_ecommerce_shoes",
-          "columnsFrom": [
-            "shoe_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {
         "snk_ecommerce_shoeStock_id": {
           "name": "snk_ecommerce_shoeStock_id",
@@ -153,7 +125,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "int",
+          "type": "serial",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": true
