@@ -1,7 +1,8 @@
 import { connect as psConnect } from '@planetscale/database';
-import { drizzle as psDrizzle } from 'drizzle-orm/planetscale-serverless';
-import { drizzle as mysqlDrizzle } from 'drizzle-orm/mysql2';
+// import { drizzle as psDrizzle } from 'drizzle-orm/planetscale-serverless';
+import { drizzle } from 'drizzle-orm/mysql2';
 import * as mysql from 'mysql2/promise';
+import * as schema from './schema';
 import {
   DATABASE_HOST,
   DATABASE_PASSWORD,
@@ -10,27 +11,26 @@ import {
   ENVIRONMENT,
   DATABASE_PORT,
 } from '../../../config';
+import { shoes } from './schema';
 
-let database;
+async function getDB() {
+  if (ENVIRONMENT === 'production') {
+    const psConnection = await mysql.createConnection({
+      uri: `mysql://${DATABASE_PASSWORD}:${DATABASE_PASSWORD}@${DATABASE_HOST}/${DATABASE_NAME}?ssl={"rejectUnauthorized":true}`,
+    });
 
-if (ENVIRONMENT === 'production') {
-  const psConnection = psConnect({
-    host: DATABASE_HOST,
-    username: DATABASE_USERNAME,
-    password: DATABASE_PASSWORD,
-  });
+    return drizzle(psConnection, { mode: 'planetscale' });
+  } else {
+    const mysqlConnection = await mysql.createConnection({
+      host: DATABASE_HOST,
+      user: DATABASE_USERNAME,
+      database: DATABASE_NAME,
+      port: DATABASE_PORT,
+      password: DATABASE_PASSWORD,
+    });
 
-  database = psDrizzle(psConnection);
-} else {
-  const mysqlConnection = await mysql.createConnection({
-    host: DATABASE_HOST,
-    user: DATABASE_USERNAME,
-    database: DATABASE_NAME,
-    port: DATABASE_PORT,
-    password: DATABASE_PASSWORD,
-  });
-
-  database = mysqlDrizzle(mysqlConnection);
+    return drizzle(mysqlConnection, { mode: 'default' });
+  }
 }
 
-export const db = database;
+export const db = await getDB();

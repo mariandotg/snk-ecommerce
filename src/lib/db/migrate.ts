@@ -9,14 +9,7 @@ const connectionConfig = {
   migrationsFolder: './migrations',
 };
 
-if (ENVIRONMENT === 'production') {
-  await psMigrate(
-    db as PlanetScaleDatabase<Record<string, never>>,
-    connectionConfig
-  );
-} else {
-  await mysqlMigrate(
-    db as MySql2Database<Record<string, never>>,
-    connectionConfig
-  );
-}
+await mysqlMigrate(
+  db as MySql2Database<Record<string, never>>,
+  connectionConfig
+);
