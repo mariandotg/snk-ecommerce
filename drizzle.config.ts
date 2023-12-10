@@ -27,8 +27,9 @@ const developmentConfig: Config = {
 
 const productionConfig: Config = {
   ...baseConfig,
+  driver: 'mysql2',
   dbCredentials: {
-    connectionString: `mysql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_HOST}/${DATABASE_NAME}?ssl={"rejectUnauthorized":true}`,
+    uri: `mysql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_HOST}/${DATABASE_NAME}?ssl={"rejectUnauthorized":true}`,
   },
   breakpoints: true,
 };
