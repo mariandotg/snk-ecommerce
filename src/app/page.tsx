@@ -1,9 +1,14 @@
 import Link from 'next/link';
 import { shoes } from '../../shoes';
+import { DATABASE_HOST } from '../../config';
+import getAllShoes from '@/lib/getAllShoes';
 
-export default function HomePage() {
+export default async function HomePage() {
+  const test = await getAllShoes();
+  console.log('ENV FN', test);
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
+      {JSON.stringify(test)}
       <ul className='max-w-2xl grid grid-cols-3 gap-4'>
         {shoes.map((shoe) => (
           <li key={shoe.id}>
