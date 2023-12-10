@@ -64,4 +64,3 @@ The Prettier configuration is located in the `.prettierrc` file. You can modify 
 ## Contribution
 
 If you encounter any issues or have any suggestions for improvement, feel free to open an [issue](https://github.com/mariandotg/nextjs-tailwind-starter/issues) or submit a [pull request](https://github.com/mariandotg/nextjs-tailwind-starter/pulls). Your contributions are welcome!
-
