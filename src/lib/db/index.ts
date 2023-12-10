@@ -16,7 +16,7 @@ import { shoes } from './schema';
 async function getDB() {
   if (ENVIRONMENT === 'production') {
     const psConnection = await mysql.createConnection({
-      uri: `mysql://${DATABASE_PASSWORD}:${DATABASE_PASSWORD}@${DATABASE_HOST}/${DATABASE_NAME}?ssl={"rejectUnauthorized":true}`,
+      uri: `mysql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_HOST}/${DATABASE_NAME}?ssl={"rejectUnauthorized":true}`,
     });
 
     return drizzle(psConnection, { mode: 'planetscale' });
