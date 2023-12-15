@@ -14,7 +14,7 @@ export default async function HomePage() {
               href={`/${shoe.id}`}
               className='w-full h-full flex flex-col gap-3'
             >
-              <img src='https://nikearprod.vtexassets.com/arquivos/ids/762016-800-800?v=638316084472370000&width=800&height=800&aspect=true' />
+              <img src={shoe.images[0]} />
               <div className='flex flex-col gap-2'>
                 <h6 className='font-medium text-base'>{shoe.name}</h6>
                 <span className='font-bold text-base'>${shoe.price}</span>
