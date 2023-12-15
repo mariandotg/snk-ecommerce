@@ -10,7 +10,7 @@ export default async function HomePage() {
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
       {JSON.stringify(test)}
       <ul className='max-w-2xl grid grid-cols-3 gap-4'>
-        {shoes.map((shoe) => (
+        {test.map((shoe) => (
           <li key={shoe.id}>
             <Link
               href={`/${shoe.id}`}

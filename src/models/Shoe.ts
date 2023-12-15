@@ -1,7 +1,8 @@
 export interface Shoe {
-  name: string;
-  description: string;
+  images: string[];
   availableSizes: string[];
-  price: number;
-  id: string;
+  id: number;
+  name: string | null;
+  description: string | null;
+  price: string | null;
 }
