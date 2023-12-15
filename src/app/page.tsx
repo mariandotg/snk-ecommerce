@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import { shoes } from '../../shoes';
-import { DATABASE_HOST } from '../../config';
 import getAllShoes from '@/lib/getAllShoes';
 
 export default async function HomePage() {
