@@ -12,6 +12,7 @@
     "migrate:push": "yarn drizzle-kit push:mysql"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.3",
     "@planetscale/database": "^1.11.0",
     "@types/node": "20.4.9",
     "@types/react": "18.2.20",
