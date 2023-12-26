@@ -38,6 +38,12 @@ export const shoeStock = mysqlTable('shoeStock', {
   updatedAt: timestamp('updated_at').defaultNow().onUpdateNow(),
 });
 
+export const users = mysqlTable('users', {
+  id: serial('id').primaryKey(),
+  email: varchar('email', { length: 255 }).notNull(),
+  password: varchar('password', { length: 255 }).notNull(),
+});
+
 export const shoesRelations = relations(shoes, ({ many }) => ({
   shoeImages: many(shoeImages),
   shoeStock: many(shoeStock),
