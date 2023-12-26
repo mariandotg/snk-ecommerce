@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { LoginFormValues } from '@/models/LoginFormValues';
+import { RegisterFormValues } from '@/models/RegisterFormValues';
 import Field from './Field';
 import { z } from 'Zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -13,16 +13,26 @@ const userSchema = z
   })
   .required();
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<LoginFormValues>({
+  } = useForm<RegisterFormValues>({
     resolver: zodResolver(userSchema),
   });
-  const onSubmit: SubmitHandler<LoginFormValues> = (data) => {
+
+  const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
     console.log(data);
+    fetch('api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    reset();
   };
 
   return (
@@ -45,4 +55,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

@@ -1,9 +1,9 @@
-import { LoginFormValues } from '@/models/LoginFormValues';
+import { RegisterFormValues } from '@/models/RegisterFormValues';
 import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface Props {
-  registerFn: UseFormRegisterReturn<keyof LoginFormValues>;
+  registerFn: UseFormRegisterReturn<keyof RegisterFormValues>;
 }
 
 const Input = ({ registerFn }: Props) => {

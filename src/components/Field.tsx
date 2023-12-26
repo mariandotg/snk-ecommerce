@@ -1,11 +1,11 @@
 import React from 'react';
 import Input from './Input';
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
-import { LoginFormValues } from '@/models/LoginFormValues';
+import { RegisterFormValues } from '@/models/RegisterFormValues';
 
 interface Props {
-  registerFn: UseFormRegisterReturn<keyof LoginFormValues>;
-  value: keyof LoginFormValues;
+  registerFn: UseFormRegisterReturn<keyof RegisterFormValues>;
+  value: keyof RegisterFormValues;
   error: FieldError | undefined;
 }
 
