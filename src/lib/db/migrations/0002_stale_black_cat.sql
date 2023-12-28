@@ -1,0 +1,1 @@
+ALTER TABLE `snk_ecommerce_users` ADD CONSTRAINT `snk_ecommerce_users_email_unique` UNIQUE(`email`);
