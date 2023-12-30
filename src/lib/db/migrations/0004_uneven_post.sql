@@ -1,0 +1,1 @@
+ALTER TABLE `snk_ecommerce_users` ADD `password` varchar(255) NOT NULL;
