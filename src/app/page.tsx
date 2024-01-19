@@ -1,11 +1,18 @@
 import Link from 'next/link';
 import getAllShoes from '@/lib/getAllShoes';
+import LoginInfo from '@/components/LoginInfo';
+import { getServerSession } from 'next-auth';
+import { authOptions } from './api/auth/[...nextauth]/route';
 
 export default async function HomePage() {
   const test = await getAllShoes();
   console.log('ENV FN', test);
+  const sesion = await getServerSession(authOptions);
+  console.log('sesion', { sesion });
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
+      <LoginInfo />
+      <p className='bg-red-800'>{sesion?.user?.email}</p>
       {JSON.stringify(test)}
       <ul className='max-w-2xl grid grid-cols-3 gap-4'>
         {test.map((shoe) => (
