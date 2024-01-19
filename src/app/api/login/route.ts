@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 export async function POST(request: NextRequest) {
   try {
     const userData = await request.json();
+    console.log(userData);
     const user = await getUser(userData);
 
     if (!user) {
@@ -26,7 +27,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, ...user });
   } catch (error) {
     return NextResponse.json(
       { error: 'Error de autenticación' },
