@@ -40,8 +40,8 @@ export const shoeStock = mysqlTable('shoeStock', {
   updatedAt: timestamp('updated_at').defaultNow().onUpdateNow(),
 });
 
-export const users = mysqlTable('users', {
-  id: varchar('id', { length: 255 }).notNull().primaryKey(),
+export const users = mysqlTable('user', {
+  id: serial('id').primaryKey(),
   name: varchar('name', { length: 255 }),
   email: varchar('email', { length: 255 }).notNull(),
   password: varchar('password', { length: 255 }).notNull(),
