@@ -5,6 +5,7 @@ import { RegisterFormValues } from '@/models/RegisterFormValues';
 import Field from './Field';
 import { z } from 'Zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useSession, signIn } from 'next-auth/react';
 
 const userSchema = z
   .object({
@@ -25,18 +26,26 @@ const LoginForm = () => {
     resolver: zodResolver(userSchema),
   });
 
+  const { data: session, status } = useSession();
   const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
-    console.log(data);
-    const result = await fetch('api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    }).then((data) => data.json());
+    console.log({ session });
+    signIn('credentials', { email: data.email, password: data.password });
+    // const result = await fetch('api/login', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(data),
+    // }).then((data) => data.json());
 
-    if (result.success) setIsLogged(result.success);
-    else setError('no se pudo iniciar sesión');
+    // if (result.success) {
+    //   console.log(user);
+    //   setUser({ email: data.email }); // Actualiza el usuario en el contexto
+    //   console.log(user);
+    //   setIsLogged(result.success);
+    // } else {
+    //   setError('No se pudo iniciar sesión');
+    // }
     reset();
   };
 
