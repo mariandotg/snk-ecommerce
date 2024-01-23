@@ -4,7 +4,7 @@ import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
 interface Props<T> {
   registerFn: UseFormRegisterReturn<Extract<keyof T, string>>;
-  value: Extract<keyof T, string>;
+  value: string;
   error: FieldError | undefined;
   inputType?: 'number' | 'text' | 'email';
   placeholder?: string;
@@ -20,8 +20,8 @@ const Field = <T,>({
   defaultValue,
 }: Props<T>) => {
   return (
-    <label className='flex flex-col gap-y-2'>
-      {value.toLocaleUpperCase()}
+    <label className='flex flex-col gap-y-2 text-base'>
+      {value}
       <Input
         registerFn={registerFn}
         type={inputType}
@@ -29,7 +29,7 @@ const Field = <T,>({
         defaultValue={defaultValue}
       />
       {error && (
-        <p className='text-xs italic text-red-500 mt-2'>{error?.message}</p>
+        <p className='text-xs italic text-red-500 w-fit'>{error?.message}</p>
       )}
     </label>
   );

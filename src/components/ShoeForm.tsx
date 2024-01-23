@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useSession } from 'next-auth/react';
 import { ShoeFormValues } from '@/models/ShoeFormValues';
 import Field from './Field';
+import Button from './Button';
 
 const shoeSchema = z
   .object({
@@ -52,35 +53,36 @@ const ShoeForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
-      <Field value='name' registerFn={register('name')} error={errors.name} />
+    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4 p-4'>
+      <Field value='Nombre' registerFn={register('name')} error={errors.name} />
       <Field
-        value='description'
+        value='Descripción'
         registerFn={register('description')}
         error={errors.description}
       />
       <Field
-        value='price'
+        value='Precio'
         inputType='number'
         defaultValue={0}
         registerFn={register('price', { valueAsNumber: true })}
         error={errors.price}
       />
       <Field
-        value='imageUrl'
+        value='URL de imagen'
         registerFn={register('imageUrl')}
         error={errors.imageUrl}
       />
 
+      <label>Talles</label>
       {fields.map((size, index) => (
-        <div key={size.id} className='flex flex-col gap-y-2'>
+        <div key={size.id} className='grid grid-cols-2 gap-4'>
           <Field<any>
-            value={`availableSizes[${index}].size`}
+            value='Talle'
             registerFn={register(`availableSizes.${index}.size`)}
             error={errors?.availableSizes?.[index]?.size}
           />
           <Field<any>
-            value={`availableSizes[${index}].stock`}
+            value='Stock de talle'
             inputType='number'
             defaultValue={0}
             registerFn={register(`availableSizes.${index}.stock`, {
@@ -91,14 +93,11 @@ const ShoeForm = () => {
         </div>
       ))}
 
-      <button type='button' onClick={() => append({ size: '', stock: 0 })}>
-        Add size stock
-      </button>
+      <Button onClick={() => append({ size: '', stock: 0 })}>
+        Añadir un nuevo talle
+      </Button>
 
-      <input
-        type='submit'
-        className='bg-primary text-black w-fit px-3 py-1 rounded-sm'
-      />
+      <Button type='submit'>Enviar</Button>
     </form>
   );
 };

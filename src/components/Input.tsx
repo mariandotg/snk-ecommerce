@@ -20,6 +20,7 @@ const Input = <T,>({
       placeholder={placeholder}
       defaultValue={defaultValue}
       {...registerFn}
+      className='px-3 py-1 rounded-sm text-black'
     />
   );
 };
