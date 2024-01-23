@@ -4,8 +4,8 @@ import { useForm, SubmitHandler, useFieldArray } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSession } from 'next-auth/react';
-import addShoe from '@/lib/addShoe';
 import { ShoeFormValues } from '@/models/ShoeFormValues';
+import Field from './Field';
 
 const shoeSchema = z
   .object({
@@ -53,76 +53,41 @@ const ShoeForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
-      <label className='flex flex-col gap-y-2'>
-        name
-        <input {...register('name')} />
-        {errors?.name && (
-          <p className='text-xs italic text-red-500 mt-2'>
-            {errors.name.message}
-          </p>
-        )}
-      </label>
-      <label className='flex flex-col gap-y-2'>
-        description
-        <input {...register('description')} />
-        {errors?.description && (
-          <p className='text-xs italic text-red-500 mt-2'>
-            {errors.description.message}
-          </p>
-        )}
-      </label>
-      <label className='flex flex-col gap-y-2'>
-        price
-        <input
-          type='number'
-          defaultValue={0}
-          {...register('price', { valueAsNumber: true })}
-        />
-        {errors?.price && (
-          <p className='text-xs italic text-red-500 mt-2'>
-            {errors.price.message}
-          </p>
-        )}
-      </label>
-      <label className='flex flex-col gap-y-2'>
-        imageUrl
-        <input {...register('imageUrl')} />
-        {errors?.imageUrl && (
-          <p className='text-xs italic text-red-500 mt-2'>
-            {errors.imageUrl.message}
-          </p>
-        )}
-      </label>
+      <Field value='name' registerFn={register('name')} error={errors.name} />
+      <Field
+        value='description'
+        registerFn={register('description')}
+        error={errors.description}
+      />
+      <Field
+        value='price'
+        inputType='number'
+        defaultValue={0}
+        registerFn={register('price', { valueAsNumber: true })}
+        error={errors.price}
+      />
+      <Field
+        value='imageUrl'
+        registerFn={register('imageUrl')}
+        error={errors.imageUrl}
+      />
 
       {fields.map((size, index) => (
         <div key={size.id} className='flex flex-col gap-y-2'>
-          <label>
-            Tamaño
-            <input
-              placeholder='size'
-              {...register(`availableSizes.${index}.size`)}
-            />
-            {errors?.availableSizes?.[index]?.size && (
-              <p className='text-xs italic text-red-500 mt-2'>
-                {errors.availableSizes?.[index]?.size?.message}
-              </p>
-            )}
-          </label>
-          <label>
-            Stock
-            <input
-              type='number'
-              defaultValue={0}
-              {...register(`availableSizes.${index}.stock`, {
-                valueAsNumber: true,
-              })}
-            />
-            {errors?.availableSizes?.[index]?.stock && (
-              <p className='text-xs italic text-red-500 mt-2'>
-                {errors.availableSizes?.[index]?.stock?.message}
-              </p>
-            )}
-          </label>
+          <Field<any>
+            value={`availableSizes[${index}].size`}
+            registerFn={register(`availableSizes.${index}.size`)}
+            error={errors?.availableSizes?.[index]?.size}
+          />
+          <Field<any>
+            value={`availableSizes[${index}].stock`}
+            inputType='number'
+            defaultValue={0}
+            registerFn={register(`availableSizes.${index}.stock`, {
+              valueAsNumber: true,
+            })}
+            error={errors?.availableSizes?.[index]?.stock}
+          />
         </div>
       ))}
 
