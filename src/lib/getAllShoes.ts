@@ -20,11 +20,15 @@ export default async function getAllShoes(): Promise<Shoe[]> {
       const sizesData = await db
         .select({
           size: shoeStock.size,
+          stock: shoeStock.stock,
         })
         .from(shoeStock)
         .where(eq(shoeStock.shoeId, shoe.id));
 
-      const availableSizes = sizesData.map((sizeData) => sizeData.size);
+      const availableSizes = sizesData.map((sizeData) => ({
+        size: sizeData.size,
+        stock: sizeData.stock,
+      }));
 
       return {
         ...shoe,
