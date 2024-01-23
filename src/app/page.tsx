@@ -2,7 +2,7 @@ import Link from 'next/link';
 import getAllShoes from '@/lib/getAllShoes';
 import LoginInfo from '@/components/LoginInfo';
 import { getServerSession } from 'next-auth';
-import { authOptions } from './api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/authOptions';
 
 export default async function HomePage() {
   const test = await getAllShoes();

@@ -1,9 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { Session, getServerSession } from 'next-auth';
+import { getServerSession } from 'next-auth';
 import Providers from '@/components/Providers';
-import { authOptions } from './api/auth/[...nextauth]/route';
 
 const inter = Inter({ subsets: ['latin'] });
 

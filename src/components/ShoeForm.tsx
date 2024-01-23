@@ -41,7 +41,13 @@ const ShoeForm = () => {
   const { data: session } = useSession();
 
   const onSubmit: SubmitHandler<ShoeFormValues> = async (data) => {
-    await addShoe(data);
+    fetch('api/shoe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
     reset();
   };
 

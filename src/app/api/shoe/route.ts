@@ -1,10 +1,10 @@
-import addUser from '@/lib/addUser';
+import addShoe from '@/lib/addShoe';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   const res = await request.json();
 
-  await addUser(res);
+  await addShoe(res);
 
   return NextResponse.json({ res });
 }
