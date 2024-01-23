@@ -11,6 +11,7 @@ import {
 const baseConfig: Config = {
   schema: './src/lib/db/schema.ts',
   out: './src/lib/db/migrations',
+  tablesFilter: ['snk_ecommerce_*'],
 };
 
 const developmentConfig: Config = {
