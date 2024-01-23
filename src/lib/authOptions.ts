@@ -3,6 +3,7 @@ import { NextAuthOptions } from 'next-auth';
 import { db } from './db';
 import { mysqlTableCreator } from 'drizzle-orm/mysql-core';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { NEXTAUTH_URL } from '../../config';
 
 type Adapter = NextAuthOptions['adapter'];
 
@@ -24,7 +25,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         console.log({ credentials });
-        const authResponse = await fetch('http://localhost:3000/api/login', {
+        const authResponse = await fetch(`${NEXTAUTH_URL}/api/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -36,3 +36,5 @@ export {
   DATABASE_PASSWORD,
   DATABASE_PORT,
 };
+
+export const { NEXTAUTH_URL } = process.env;
