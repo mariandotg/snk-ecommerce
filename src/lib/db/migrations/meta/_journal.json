@@ -43,6 +43,13 @@
       "when": 1703913327934,
       "tag": "0005_hot_leo",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1705985547037,
+      "tag": "0006_tiresome_corsair",
+      "breakpoints": true
     }
   ]
 }
