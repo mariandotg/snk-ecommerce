@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useForm, SubmitHandler, useFieldArray } from 'react-hook-form';
-import { z } from 'Zod';
+import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSession } from 'next-auth/react';
 import addShoe from '@/lib/addShoe';
