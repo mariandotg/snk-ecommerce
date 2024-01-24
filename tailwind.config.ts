@@ -24,6 +24,7 @@ const config: Config = {
     fontSize: {
       xs: ['0.75rem', '0.75rem'],
       base: ['1rem', '1rem'],
+      xl: ['2rem', '2.25rem'],
     },
   },
   plugins: [],
