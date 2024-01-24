@@ -1,5 +1,3 @@
-import { connect as psConnect } from '@planetscale/database';
-// import { drizzle as psDrizzle } from 'drizzle-orm/planetscale-serverless';
 import { drizzle } from 'drizzle-orm/mysql2';
 import * as mysql from 'mysql2/promise';
 import * as schema from './schema';
@@ -11,7 +9,6 @@ import {
   ENVIRONMENT,
   DATABASE_PORT,
 } from '../../../config';
-import { shoes } from './schema';
 
 async function getDB() {
   if (ENVIRONMENT === 'production') {
@@ -19,7 +16,7 @@ async function getDB() {
       uri: `mysql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_HOST}/${DATABASE_NAME}?ssl={"rejectUnauthorized":true}`,
     });
 
-    return drizzle(psConnection, { mode: 'planetscale' });
+    return drizzle(psConnection, { schema, mode: 'planetscale' });
   } else {
     const mysqlConnection = await mysql.createConnection({
       host: DATABASE_HOST,
@@ -29,7 +26,7 @@ async function getDB() {
       password: DATABASE_PASSWORD,
     });
 
-    return drizzle(mysqlConnection, { mode: 'default' });
+    return drizzle(mysqlConnection, { schema, mode: 'default' });
   }
 }
 
